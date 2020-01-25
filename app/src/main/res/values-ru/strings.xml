@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Мой проект</string>
+    <string name="button">детали</string>
+    <string name="invite">пригласить друга</string>
+</resources>

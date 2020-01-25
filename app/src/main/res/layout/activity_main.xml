@@ -4,69 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screenBackGround"
+    android:background="?android:colorPrimary"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageAladin"
-        android:layout_width="168dp"
-        android:layout_height="73dp"
+        android:layout_width="193dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="8dp"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textFilmAladin"
         app:srcCompat="@drawable/aladin"
-        tools:visibility="visible" />
+        tools:layout_editor_absoluteX="109dp" />
 
     <ImageView
         android:id="@+id/imageAlita"
-        android:layout_width="197dp"
-        android:layout_height="76dp"
+        android:layout_width="187dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="16dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textFilmAlita"
-        app:srcCompat="@drawable/alita"
-        tools:visibility="visible" />
-
-    <ImageView
-        android:id="@+id/imageMarvel"
-        android:layout_width="211dp"
-        android:layout_height="76dp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFilmMarvel"
-        app:srcCompat="@drawable/marvel"
-        tools:visibility="visible" />
-
-    <ImageView
-        android:id="@+id/imageT34"
-        android:layout_width="176dp"
-        android:layout_height="77dp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFilmT34"
-        app:srcCompat="@drawable/t34"
-        tools:visibility="visible" />
+        app:srcCompat="@drawable/alita" />
 
     <TextView
         android:id="@+id/textFilmAladin"
+        style="@style/AppTheme.Topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Фильм №1 Аладдин"
         android:textColor="#F44336"
         android:textSize="8sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textMain" />
 
     <TextView
         android:id="@+id/textFilmAlita"
+        style="@style/AppTheme.Topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Фильм №2 Алита"
@@ -74,45 +53,21 @@
         android:textSize="8sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAladin" />
-
-    <TextView
-        android:id="@+id/textFilmMarvel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Фильм №3 Мстители"
-        android:textColor="#F44336"
-        android:textSize="8sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAlita" />
-
-    <TextView
-        android:id="@+id/textFilmT34"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Фильм №4 Т-34"
-        android:textColor="#F44336"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMarvel" />
+        tools:layout_editor_absoluteY="238dp" />
 
     <TextView
         android:id="@+id/textMain"
-        android:layout_width="198dp"
-        android:layout_height="12dp"
+        android:layout_width="191dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="28dp"
         android:text="Популярные фильмы 2019 года"
         android:textColor="#3F51B5"
         android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -120,10 +75,12 @@
         android:id="@+id/buttonAladin"
         android:layout_width="73dp"
         android:layout_height="28dp"
+        android:layout_marginTop="8dp"
         android:onClick="ClickAladin"
-        android:text="Детали"
+        android:text="@string/button"
         android:textSize="6sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageAladin" />
 
@@ -131,48 +88,37 @@
         android:id="@+id/buttonAlita"
         android:layout_width="81dp"
         android:layout_height="27dp"
+        android:layout_marginTop="16dp"
         android:onClick="ClickAlita"
-        android:text="Детали"
+        android:text="@string/button"
         android:textSize="6sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageAlita" />
 
-    <Button
-        android:id="@+id/buttonMarvel"
-        android:layout_width="84dp"
-        android:layout_height="27dp"
-        android:onClick="ClickMarvel"
-        android:text="Детали"
-        android:textSize="6sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageMarvel" />
-
-    <Button
-        android:id="@+id/buttonT34"
-        android:layout_width="87dp"
-        android:layout_height="29dp"
-        android:onClick="ClickT34"
-        android:text="Детали"
-        android:textSize="6sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageT34" />
-
-    <Button
-        android:id="@+id/buttonInvite"
-        android:layout_width="121dp"
-        android:layout_height="29dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/appCompatButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="ClickInvite"
-        android:text="Пригласить друга"
-        android:textSize="6sp"
+        android:text="@string/invite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAlita"
+        app:srcCompat="@drawable/ic_send_black_24dp" />
+
+    <Button
+        android:id="@+id/buttonTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:onClick="buttonMe"
+        android:text="сменить тему (день,ночь)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonT34"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
+        app:layout_constraintVertical_bias="0.045" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

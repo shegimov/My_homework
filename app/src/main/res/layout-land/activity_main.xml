@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    >
+
+    <TextView
+        android:id="@+id/textMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Популярные фильмы 2019 года"
+        android:gravity="center"
+        android:textColor="#3F51B5"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="479dp"
+        android:layout_height="192dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:id="@+id/textFilmAladin"
+                style="@style/AppTheme.Topic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Фильм №1 Аладдин"
+                android:textColor="#F44336"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageAladin"
+                android:layout_width="217dp"
+                android:layout_height="131dp"
+                app:srcCompat="@drawable/aladin" />
+
+            <Button
+                android:id="@+id/buttonAladin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="ClickAladin"
+                android:text="@string/button"
+                android:textSize="6sp"
+                app:layout_constraintTop_toBottomOf="@+id/imageAladin" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/textFilmAlita"
+                style="@style/AppTheme.Topic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Фильм №2 Алита"
+                android:textColor="#F44336"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/buttonAlita" />
+
+            <ImageView
+                android:id="@+id/imageAlita"
+                android:layout_width="217dp"
+                android:layout_height="141dp"
+                app:srcCompat="@drawable/alita" />
+
+            <Button
+                android:id="@+id/buttonAlita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="ClickAlita"
+                android:text="@string/button"
+                android:textSize="6sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="482dp"
+        android:layout_height="153dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/textFilmMarvel"
+                style="@style/AppTheme.Topic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Фильм №3 Мстители"
+                android:textColor="#F44336"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageMarvel"
+                android:layout_width="221dp"
+                android:layout_height="100dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/marvel" />
+
+            <Button
+                android:id="@+id/buttonMarvel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="ClickMarvel"
+                android:text="@string/button"
+                android:textSize="6sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/textFilmT34"
+                style="@style/AppTheme.Topic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Фильм №4 Т-34"
+                android:textColor="#F44336"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageT34"
+                android:layout_width="195dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/t34" />
+
+            <Button
+                android:id="@+id/buttonT34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="ClickT34"
+                android:text="@string/button"
+                android:textSize="6sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ClickInvite"
+        android:text="@string/invite"
+        app:layout_constraintTop_toBottomOf="@+id/buttonT34"
+        app:srcCompat="@drawable/ic_send_black_24dp" />
+
+</LinearLayout>

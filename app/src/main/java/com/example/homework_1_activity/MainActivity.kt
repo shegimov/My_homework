@@ -1,12 +1,14 @@
 package com.example.homework_1_activity
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,10 +17,25 @@ class MainActivity : AppCompatActivity() {
     var changeColorAlita: Boolean = false
     var changeColorMarvel: Boolean = false
     var changeColorT34: Boolean = false
+    var topic: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+    }
+
+    fun buttonMe(view: View?) {
+        if (topic) {
+            setTheme(R.style.CustomTheme)
+            setContentView(R.layout.activity_main)
+            topic = false
+        } else {
+            setTheme(R.style.AppTheme)
+            setContentView(R.layout.activity_main)
+            topic = true
+        }
     }
 
     fun ClickAladin(view: View?) {
@@ -138,7 +155,28 @@ class MainActivity : AppCompatActivity() {
             startActivity(chooser)
         }
     }
+
+    override fun onBackPressed() {
+        val bld: AlertDialog.Builder = AlertDialog.Builder(this)
+        val ContinueApp =
+            DialogInterface.OnClickListener { dialog,
+                                              which ->
+            }
+        val closeApp =
+            DialogInterface.OnClickListener { dialog,
+                                              which ->
+                super.onBackPressed()
+            }
+        bld.setMessage("Вы хотите закрыть приложение?")
+        bld.setTitle("Привет!")
+        bld.setNegativeButton("Нет", ContinueApp)
+        bld.setPositiveButton("Да", closeApp)
+        val dialog: AlertDialog = bld.create()
+        dialog.show()
+    }
+
     companion object {
         val TAG = MainActivity::class.java.simpleName
+        val Topic = Boolean
     }
 }
