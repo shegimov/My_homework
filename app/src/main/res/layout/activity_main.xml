@@ -13,9 +13,10 @@
         android:layout_height="108dp"
         android:layout_marginTop="8dp"
         android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textFilmAladin"
-        app:srcCompat="@drawable/aladin"
-        tools:layout_editor_absoluteX="109dp" />
+        app:srcCompat="@drawable/aladin" />
 
     <ImageView
         android:id="@+id/imageAlita"
@@ -48,6 +49,7 @@
         style="@style/AppTheme.Topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="Фильм №2 Алита"
         android:textColor="#F44336"
         android:textSize="8sp"
@@ -55,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="238dp" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAladin" />
 
     <TextView
         android:id="@+id/textMain"
