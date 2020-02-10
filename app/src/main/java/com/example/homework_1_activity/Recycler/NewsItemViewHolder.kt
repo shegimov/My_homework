@@ -1,10 +1,11 @@
-package com.example.homework_1_activity
+package com.example.homework_1_activity.Recycler
 
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.homework_1_activity.R
 
 class NewsItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val textNameFilm: TextView = itemView.findViewById(R.id.textNameFilm)

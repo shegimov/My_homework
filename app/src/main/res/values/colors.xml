@@ -2,8 +2,5 @@
 <resources>
     <color name="colorPrimary">#FFC107</color>
     <color name="colorPrimary_day">#FFC107</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="colorDetails">#3F51B5</color>
-    <color name="colorPrimary_night">#008577</color>
+    <color name="indigo">#3F51B5</color>
 </resources>
