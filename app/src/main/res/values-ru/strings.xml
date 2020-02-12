@@ -2,4 +2,16 @@
     <string name="app_name">Мой проект</string>
     <string name="button">детали</string>
     <string name="invite">пригласить друга</string>
+    <string name="nav_header_title">Проект</string>
+    <string name="nav_header_subtitle">Меню</string>
+    <string name="nav_header_desc">Заголовок навигации</string>
+    <string name="menu_home">Домой</string>
+    <string name="menu_gallery">Избранное</string>
+    <string name="menu_slideshow">Слайдшоу</string>
+    <string name="menu_tools">Инструменты</string>
+    <string name="menu_share">Общий</string>
+    <string name="menu_send">Отправить</string>
+    <string name="navigation_drawer_open">Открыть навигационную панель</string>
+    <string name="navigation_drawer_close">Закрыть навигационную панель</string>
+    <string name="action_settings">Настройки</string>
 </resources>

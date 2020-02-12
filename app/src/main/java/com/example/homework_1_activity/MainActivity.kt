@@ -1,62 +1,141 @@
 package com.example.homework_1_activity
 
-import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AlertDialog
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.example.homework_1_activity.Recycler.NewsItem
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NewListFragments.OnNewsClickListener,
+    NewListFragments.OnNewListSelect, NavigationView.OnNavigationItemSelectedListener {
 
-    val items = arrayListOf<NewsItem>(
-        NewsItem(
-            "Фильм №1 - Алита",
-            "Действие фильма происходит через 300 лет после Великой войны в XXVI веке. Доктор Идо находит останки женщины-киборга. После починки киборг ничего не помнит, но обнаруживает, что в состоянии пользоваться боевыми приемами киборгов. Начинаются поиски утерянных воспоминаний.",
-            R.drawable.alita
-        ),
-        NewsItem(
-            "Фильм №2 - Аладин",
-            "Молодой воришка по имени Аладдин хочет стать принцем, чтобы жениться на принцессе Жасмин. Тем временем визирь Аграбы Джафар, намеревается захватить власть над Аграбой, а для этого он стремится заполучить волшебную лампу, хранящуюся в пещере чудес, доступ к которой разрешен лишь тому, кого называют «алмаз неограненный», и этим человеком является никто иной как сам Аладдин.",
-            R.drawable.aladin
-        ),
-        NewsItem(
-            "Фильм №3 - Мстители",
-            "Оставшиеся в живых члены команды Мстителей и их союзники должны разработать новый план, который поможет противостоять разрушительным действиям могущественного титана Таноса. После наиболее масштабной и трагической битвы в истории они не могут допустить ошибку.",
-            R.drawable.marvel
-        ),
-        NewsItem(
-            "Фильм №4 - Т34",
-            "Во времена величайших испытаний человечества, когда от каждого действия зависят жизни любимых, два заклятых врага начнут свое противостояние. Оказавшись в плену, вчерашний курсант Ивушкин планирует дерзкий побег. Он собирает свой экипаж и бросает вызов немецким танковым ассам во главе с Ягером. Ради своей любви и Родины он готов идти до конца.",
-            R.drawable.t34
-        )
-    )
-
-    val listSelect = arrayListOf<String>()
+    private var snackbar: Snackbar? = null
+    val listSelectMain = arrayListOf<String>()
+    val listSelectFinished = arrayListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initRecycler()
 
+        NavigationView()
+        SnackBar()
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer, NewListFragments(), NewListFragments.TAG)
+            .commit()
     }
 
-    fun initRecycler() {
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = NewsAdapter(LayoutInflater.from(this), items, listSelect, this)
+    override fun onNewsClick(item: NewsItem) {
+        openNewsDetailed(item)
+    }
 
-        findViewById<View>(R.id.buttonTopic).setOnClickListener {
-            val intent = Intent(MainActivity@ this, ActivitySelect::class.java)
-            intent.putStringArrayListExtra("list", listSelect)
-            startActivity(intent)
+    override fun openNewsSelected(listSelect: String) {
+        openNewsSelect(listSelect)
+    }
+
+    private fun NavigationView() {
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val toggle = ActionBarDrawerToggle(
+            this, drawer, toolbar,
+            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
+        drawer.addDrawerListener(toggle)
+        toggle.syncState()
+
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
+        navigationView.getHeaderView(0).setBackgroundColor(Color.RED)
+    }
+
+    private fun SnackBar() {
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        val listenerAdd = View.OnClickListener {
+            listSelectFinished.clear()
+            if (listSelectMain.size > 0 ) {Toast.makeText(this, " Выбранные фильмы добавлены в избранное", Toast.LENGTH_SHORT).show()}
+            else {Toast.makeText(this, " Не выбран ни один из фильмов", Toast.LENGTH_SHORT).show()}
+            for (select in 0..listSelectMain.size - 1) listSelectFinished.add(
+                listSelectMain[select].toString()
+            )
         }
-        findViewById<View>(R.id.buttonInvite).setOnClickListener {
+        fab.setOnClickListener { view ->
+            snackbar = Snackbar.make(view, "ИЗБРАННОЕ", Snackbar.LENGTH_INDEFINITE)
+                .setAction("ДОБАВИТЬ", listenerAdd)
+            snackbar!!.setActionTextColor(ContextCompat.getColor(this, R.color.indigo))
+            val snackbarView = snackbar!!.view
+            snackbarView.setBackgroundColor(Color.GRAY)
+            val snCallback: Snackbar.Callback = object : Snackbar.Callback() {
+                override fun onShown(sb: Snackbar) {
+                }
+
+                override fun onDismissed(snBar: Snackbar, event: Int) {
+                }
+            }
+            snackbar!!.addCallback(snCallback)
+            snackbar!!.show()
+            snackbar!!.removeCallback(snCallback)
+        }
+
+        findViewById<FloatingActionButton>(R.id.button_dismiss).setOnClickListener {
+            if (listSelectFinished.size > 0 ){
+            snackbar = Snackbar.make(it, "ИЗБРАННОЕ", Snackbar.LENGTH_INDEFINITE)
+            Toast.makeText(this, "Список выбранных фильмов был очищен!!!", Toast.LENGTH_SHORT)
+                .show()
+            snackbar!!.dismiss()
+            listSelectFinished.clear()
+            listSelectMain.clear()}
+        }
+    }
+
+    override fun onBackPressed() {
+
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
+        } else {
+            finish()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.activity_main_drawer, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.nav_home) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, NewListFragments(), NewListFragments.TAG)
+                .commit()
+        } else if (id == R.id.nav_topic) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(
+                    R.id.fragmentContainer,
+                    NewSelectsFragments.newInstance(listSelectFinished),
+                    NewSelectsFragments.TAG
+                )
+                .addToBackStack(null)
+                .commit()
+        } else if (id == R.id.nav_send) {
+            Toast.makeText(this, " Открываю окно отправки приглашения", Toast.LENGTH_LONG).show()
             val textMessage = "Приглашая тебя мой друг протестировать мое приложение!"
             val sendIntent = Intent()
             sendIntent.action = Intent.ACTION_SEND
@@ -68,24 +147,32 @@ class MainActivity : AppCompatActivity() {
                 startActivity(chooser)
             }
         }
+
+        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawer.closeDrawer(GravityCompat.START)
+        return true
     }
 
-    override fun onBackPressed() {
-        val bld: AlertDialog.Builder = AlertDialog.Builder(this)
-        val ContinueApp =
-            DialogInterface.OnClickListener { dialog,
-                                              which ->
-            }
-        val closeApp =
-            DialogInterface.OnClickListener { dialog,
-                                              which ->
-                super.onBackPressed()
-            }
-        bld.setMessage("Вы хотите закрыть приложение?")
-        bld.setTitle("Привет!")
-        bld.setNegativeButton("Нет", ContinueApp)
-        bld.setPositiveButton("Да", closeApp)
-        val dialog: AlertDialog = bld.create()
-        dialog.show()
+    fun openNewsDetailed(item: NewsItem) {
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(
+                R.id.fragmentContainer,
+                NewDetailsFragments.newInstance(item.pictureName, item.description),
+                NewDetailsFragments.TAG
+            )
+            .addToBackStack(null)
+            .commit()
+    }
+
+    fun openNewsSelect(listSelect: String) {
+        Toast.makeText(this, listSelect + " выбран!", Toast.LENGTH_SHORT).show()
+        listSelectMain.add(listSelect)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
