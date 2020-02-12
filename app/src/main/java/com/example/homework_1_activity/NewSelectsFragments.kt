@@ -23,10 +23,10 @@ class NewSelectsFragments : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val listSelect = arguments?.getStringArrayList("list")
+        val listSelect = arguments!!.getStringArrayList("list")
         for (select in 0..listSelect!!.size - 1) items.add(
             NewsItemSelect(
-                listSelect[select].toString()
+                listSelect[select]
             )
         )
         view.findViewById<RecyclerView>(R.id.recyclerViewSelect).adapter = NewsAdapterSelect(
@@ -62,13 +62,6 @@ class NewSelectsFragments : Fragment() {
 
         val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
-
-        view.findViewById<View>(R.id.btnRemove).setOnClickListener() {
-            if (items.size > 0) {
-                items.removeAt(1)
-                recyclerView.adapter?.notifyItemRemoved(1)
-            }
-        }
     }
 
     companion object {

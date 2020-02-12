@@ -66,9 +66,13 @@ class NewListFragments : Fragment() {
 
         if (activity is OnNewsClickListener) {
             listener = activity as OnNewsClickListener
-            listenerList = activity as OnNewListSelect
         } else {
             throw Exception("Activity must implement OnNewsClickListener")
+        }
+        if (activity is OnNewListSelect) {
+            listenerList = activity as OnNewListSelect
+        } else {
+            throw Exception("Activity must implement OnNewListSelect")
         }
     }
 

@@ -24,14 +24,16 @@ class MainActivity : AppCompatActivity(), NewListFragments.OnNewsClickListener,
     private var snackbar: Snackbar? = null
     val listSelectMain = arrayListOf<String>()
     val listSelectFinished = arrayListOf<String>()
+    var toolbar: Toolbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        NavigationView()
-        SnackBar()
+
+        navigationView()
+        snackBar()
 
         supportFragmentManager
             .beginTransaction()
@@ -47,9 +49,10 @@ class MainActivity : AppCompatActivity(), NewListFragments.OnNewsClickListener,
         openNewsSelect(listSelect)
     }
 
-    private fun NavigationView() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+    private fun navigationView() {
+        toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         val toggle = ActionBarDrawerToggle(
             this, drawer, toolbar,
@@ -63,7 +66,7 @@ class MainActivity : AppCompatActivity(), NewListFragments.OnNewsClickListener,
         navigationView.getHeaderView(0).setBackgroundColor(Color.RED)
     }
 
-    private fun SnackBar() {
+    private fun snackBar() {
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         val listenerAdd = View.OnClickListener {
             listSelectFinished.clear()
@@ -105,6 +108,7 @@ class MainActivity : AppCompatActivity(), NewListFragments.OnNewsClickListener,
     override fun onBackPressed() {
 
         if (supportFragmentManager.backStackEntryCount > 0) {
+            findViewById<Toolbar>(R.id.toolbar).title = "Список фильмов"
             supportFragmentManager.popBackStack()
         } else {
             finish()
@@ -113,18 +117,20 @@ class MainActivity : AppCompatActivity(), NewListFragments.OnNewsClickListener,
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.activity_main_drawer, menu)
+        inflater.inflate(R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == R.id.nav_home) {
+            toolbar?.title = "Список фильмов"
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, NewListFragments(), NewListFragments.TAG)
                 .commit()
         } else if (id == R.id.nav_topic) {
+            toolbar?.title = "Избранное"
             supportFragmentManager
                 .beginTransaction()
                 .replace(
@@ -155,6 +161,7 @@ class MainActivity : AppCompatActivity(), NewListFragments.OnNewsClickListener,
 
     fun openNewsDetailed(item: NewsItem) {
 
+        toolbar?.title = "Детали фильма"
         supportFragmentManager
             .beginTransaction()
             .replace(
