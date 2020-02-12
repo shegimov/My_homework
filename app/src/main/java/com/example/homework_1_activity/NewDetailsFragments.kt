@@ -1,5 +1,6 @@
 package com.example.homework_1_activity
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,10 @@ class NewDetailsFragments : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.news_fragment_detail, container, false)
+    }
+
+    fun getTitle(context: Context): String {
+        return "Детали"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

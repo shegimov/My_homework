@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.homework_1_activity.Recycler.NewsItem
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -66,11 +65,11 @@ class MainActivity : AppCompatActivity(), NewListFragments.OnNewsClickListener,
 
     private fun SnackBar() {
         val fab = findViewById<FloatingActionButton>(R.id.fab)
-        val listenerAdd = View.OnClickListener() {
+        val listenerAdd = View.OnClickListener {
             listSelectFinished.clear()
-            Toast.makeText(this, " Выбранные фильмы добавлены в избранное!!!", Toast.LENGTH_SHORT)
-                .show()
-            for (select in 0..listSelectMain!!.size - 1) listSelectFinished.add(
+            if (listSelectMain.size > 0 ) {Toast.makeText(this, " Выбранные фильмы добавлены в избранное", Toast.LENGTH_SHORT).show()}
+            else {Toast.makeText(this, " Не выбран ни один из фильмов", Toast.LENGTH_SHORT).show()}
+            for (select in 0..listSelectMain.size - 1) listSelectFinished.add(
                 listSelectMain[select].toString()
             )
         }
@@ -92,33 +91,30 @@ class MainActivity : AppCompatActivity(), NewListFragments.OnNewsClickListener,
             snackbar!!.removeCallback(snCallback)
         }
 
-        findViewById<FloatingActionButton>(R.id.button_dismiss).setOnClickListener() {
+        findViewById<FloatingActionButton>(R.id.button_dismiss).setOnClickListener {
+            if (listSelectFinished.size > 0 ){
+            snackbar = Snackbar.make(it, "ИЗБРАННОЕ", Snackbar.LENGTH_INDEFINITE)
             Toast.makeText(this, "Список выбранных фильмов был очищен!!!", Toast.LENGTH_SHORT)
                 .show()
             snackbar!!.dismiss()
             listSelectFinished.clear()
+            listSelectMain.clear()}
         }
     }
 
     override fun onBackPressed() {
-        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START)
+
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
         } else {
-            super.onBackPressed()
+            finish()
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        return if (id == R.id.action_settings) {
-            true
-        } else super.onOptionsItemSelected(item)
+        val inflater = menuInflater
+        inflater.inflate(R.menu.activity_main_drawer, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -138,9 +134,6 @@ class MainActivity : AppCompatActivity(), NewListFragments.OnNewsClickListener,
                 )
                 .addToBackStack(null)
                 .commit()
-        } else if (id == R.id.nav_slideshow) {
-        } else if (id == R.id.nav_tools) {
-        } else if (id == R.id.nav_share) {
         } else if (id == R.id.nav_send) {
             Toast.makeText(this, " Открываю окно отправки приглашения", Toast.LENGTH_LONG).show()
             val textMessage = "Приглашая тебя мой друг протестировать мое приложение!"

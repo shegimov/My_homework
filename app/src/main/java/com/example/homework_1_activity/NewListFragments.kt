@@ -1,5 +1,6 @@
 package com.example.homework_1_activity
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,12 @@ class NewListFragments : Fragment() {
             R.drawable.t34
         )
     )
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        retainInstance = true
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
