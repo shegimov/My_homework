@@ -12,7 +12,6 @@ import com.example.homework_1_activity.Recycler.NewsAdapterSelect
 import com.example.homework_1_activity.Recycler.NewsItemSelect
 
 class NewSelectsFragments : Fragment() {
-    val items = arrayListOf<NewsItemSelect>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,12 +22,6 @@ class NewSelectsFragments : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val listSelect = arguments!!.getStringArrayList("list")
-        for (select in 0..listSelect!!.size - 1) items.add(
-            NewsItemSelect(
-                listSelect[select]
-            )
-        )
         view.findViewById<RecyclerView>(R.id.recyclerViewSelect).adapter = NewsAdapterSelect(
             LayoutInflater.from(context), items
         )
@@ -66,15 +59,15 @@ class NewSelectsFragments : Fragment() {
 
     companion object {
         const val TAG = "NewsSelectFragment"
+        val items = arrayListOf<NewsItemSelect>()
 
         fun newInstance(listSelect: ArrayList<String>): NewSelectsFragments {
+            for (select in 0..listSelect.size - 1) items.add(
+                NewsItemSelect(
+                    listSelect[select]
+                )
+            )
             val fragment = NewSelectsFragments()
-
-            val bundle = Bundle()
-            bundle.putStringArrayList("list", listSelect)
-
-            fragment.arguments = bundle
-
             return fragment
         }
     }
