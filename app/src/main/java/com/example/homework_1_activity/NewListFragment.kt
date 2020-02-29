@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.homework_1_activity.Recycler.NewsAdapter
 import com.example.homework_1_activity.Recycler.NewsItem
 
-class NewListFragments : Fragment() {
+class NewListFragment : Fragment() {
 
     var listener: OnNewsClickListener? = null
     var listenerList: OnNewListSelect? = null

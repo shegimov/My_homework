@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.homework_1_activity.Recycler.NewsAdapterSelect
 import com.example.homework_1_activity.Recycler.NewsItemSelect
 
-class NewSelectsFragments : Fragment() {
+class NewSelectFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,13 +61,14 @@ class NewSelectsFragments : Fragment() {
         const val TAG = "NewsSelectFragment"
         val items = arrayListOf<NewsItemSelect>()
 
-        fun newInstance(listSelect: ArrayList<String>): NewSelectsFragments {
+        fun newInstance(listSelect: ArrayList<String>): NewSelectFragment {
+            items.clear()
             for (select in 0..listSelect.size - 1) items.add(
                 NewsItemSelect(
                     listSelect[select]
                 )
             )
-            val fragment = NewSelectsFragments()
+            val fragment = NewSelectFragment()
             return fragment
         }
     }

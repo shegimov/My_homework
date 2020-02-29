@@ -13,6 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/heart"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -44,5 +45,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="детали"
         />
+
+    <ImageView
+        android:id="@+id/heart"
+        android:src="@drawable/heart"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgIv"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorPrimary"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

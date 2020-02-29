@@ -12,6 +12,7 @@ class NewsItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val textDetail: TextView = itemView.findViewById(R.id.textDetail)
     val imageIv: ImageView = itemView.findViewById(R.id.imgIv)
     val buttonIv: Button = itemView.findViewById(R.id.buttonDetails)
+    val imageHeart: ImageView = itemView.findViewById(R.id.heart)
 
     fun bind(item: NewsItem){
         textNameFilm.text = item.nameFilm

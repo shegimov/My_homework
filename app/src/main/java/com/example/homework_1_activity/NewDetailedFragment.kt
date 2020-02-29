@@ -9,17 +9,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
-class NewDetailsFragments : Fragment() {
+class NewDetailedFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.news_fragment_detail, container, false)
-    }
-
-    fun getTitle(context: Context): String {
-        return "Детали"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,8 +30,8 @@ class NewDetailsFragments : Fragment() {
     companion object {
         const val TAG = "NewsDetailedFragment"
 
-        fun newInstance(pictires: Int, description: String): NewDetailsFragments {
-            val fragment = NewDetailsFragments()
+        fun newInstance(pictires: Int, description: String): NewDetailedFragment {
+            val fragment = NewDetailedFragment()
 
             val bundle = Bundle()
             bundle.putInt("Pictures", pictires)

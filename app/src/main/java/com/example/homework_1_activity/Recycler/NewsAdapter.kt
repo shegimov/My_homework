@@ -24,7 +24,7 @@ class NewsAdapter(
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: NewsItemViewHolder, position: Int) {
-        holder.imageIv.setOnClickListener() {
+        holder.imageHeart.setOnClickListener() {
             listenerList?.invoke(items[position].nameFilm)
         }
         holder.buttonIv.setOnClickListener {
