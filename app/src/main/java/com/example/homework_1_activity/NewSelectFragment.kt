@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homework_1_activity.Recycler.NewsAdapterSelect
 import com.example.homework_1_activity.Recycler.NewsItemSelect
+import java.text.FieldPosition
 
 class NewSelectFragment : Fragment() {
+
+    var listener: TransferData? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,12 +52,22 @@ class NewSelectFragment : Fragment() {
                     val position = viewHolder.adapterPosition
                     items.removeAt(position)
                     recyclerView.adapter?.notifyItemRemoved(position)
+                    listener?.transferData(position)
                 }
             }
         }
 
         val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        if (activity is TransferData) {
+            listener = activity as TransferData
+        } else {
+            throw Exception("Activity must implement TransferData")
+        }
     }
 
     companion object {
@@ -71,5 +84,9 @@ class NewSelectFragment : Fragment() {
             val fragment = NewSelectFragment()
             return fragment
         }
+    }
+
+    interface TransferData {
+        fun transferData(position: Int)
     }
 }
